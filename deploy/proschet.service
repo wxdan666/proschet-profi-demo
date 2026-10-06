@@ -1,0 +1,26 @@
+# Служба systemd для «ПросчётПрофи» на сервере Ubuntu.
+# Установка:
+#   sudo cp deploy/proschet.service /etc/systemd/system/
+#   sudo systemctl daemon-reload && sudo systemctl enable --now proschet
+[Unit]
+Description=ПросчётПрофи — учёт материалов ООО «СтройМонтаж»
+After=network.target
+
+[Service]
+Type=simple
+User=proschet
+Group=proschet
+WorkingDirectory=/opt/proschet
+ExecStart=/opt/proschet/.venv/bin/python -m streamlit run app.py \
+    --server.headless true --server.address 127.0.0.1 --server.port 8501
+Restart=on-failure
+RestartSec=5
+# Программа видит только свою папку, системные каталоги — только чтение.
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/opt/proschet
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

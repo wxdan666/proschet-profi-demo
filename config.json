@@ -1,0 +1,75 @@
+{
+    "app": {
+        "name": "ПросчётПрофи",
+        "version": "2.1.0",
+        "organization": "ООО «СтройМонтаж»",
+        "icon_path": "Image/icon.png",
+        "page_layout": "wide"
+    },
+    "database": {
+        "url": "sqlite:///proschet.db",
+        "echo": false
+    },
+    "logging": {
+        "level": "INFO",
+        "file": "app.log",
+        "format": "%(asctime)s [%(levelname)s] %(name)s: %(message)s",
+        "max_bytes": 1048576,
+        "backup_count": 3
+    },
+    "auth": {
+        "pin_required_sections": [
+            "Персонал",
+            "Импорт",
+            "Сервис"
+        ],
+        "default_pin_hash": "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4",
+        "_comment": "default_pin_hash = SHA-256 от PIN '1234'. Для смены PIN пересчитайте хеш.",
+        "max_attempts": 5,
+        "lock_minutes": 5
+    },
+    "validation": {
+        "min_name_length": 2,
+        "max_name_length": 150,
+        "max_price": 100000000.0,
+        "max_stock": 1000000
+    },
+    "units": [
+        "шт",
+        "м",
+        "м²",
+        "м³",
+        "кг",
+        "т",
+        "л",
+        "компл",
+        "упак",
+        "рул"
+    ],
+    "object_statuses": [
+        "Подготовка",
+        "В работе",
+        "Сдан",
+        "Приостановлен"
+    ],
+    "order_statuses": [
+        "Новая",
+        "В работе",
+        "Выполнена",
+        "Отменена"
+    ],
+    "material_categories": [
+        "Металлопрокат",
+        "Метизы и фурнитура",
+        "Сварочные материалы",
+        "Абразив и инструмент",
+        "Лакокрасочные материалы",
+        "Электротехника",
+        "Строительные смеси",
+        "Прочее"
+    ],
+    "backup": {
+        "dir": "backups",
+        "keep": 14
+    }
+}
